@@ -1,0 +1,48 @@
+# Пустые списки и невозможность рассчитать итог без критериев
+students
+criteria
+totals
+# Студенты и рубрикатор
+student;add;S1;Анна Иванова
+student;add;S2;Борис Петров
+criterion;add;C1;Практика;10;0.4
+criterion;add;C2;Экзамен;20;0.6
+students
+criteria
+# Оценки и итог с отсутствующей оценкой, равной нулю
+grade;S1;C1;8
+grade;S1;C2;15
+grade;S2;C1;10
+grades;S1
+totals
+# Строгая стратегия не допускает неполный набор
+policy;strict
+total;S2
+grade;S2;C2;20
+totals
+# Исправление и отмена
+grade;S1;C2;20
+cancel;S1;C1
+total;S1
+policy;zero
+total;S1
+grade;S1;C1;9
+# Проверка ошибок: состояние должно сохраниться
+grade;S1;C1;12
+grade;S1;unknown;5
+grade;unknown;C1;5
+student;add;S1;Дубликат
+criterion;update;C1;Практика;5;0.4
+criterion;remove;C1
+criterion;add;BAD;Неверный вес;10;-1
+# Изменение и удаление вспомогательных данных
+student;rename;S2;Борис Сергеев
+student;add;TEMP;Временный студент
+student;remove;TEMP
+criterion;add;TEMP;Временный критерий;5;0.2
+criterion;update;TEMP;Уточнённый критерий;10;0.3
+criterion;remove;TEMP
+# Итог: Анна 9.60; Борис 10.00; средний 9.80
+totals
+export;results.csv
+exit
